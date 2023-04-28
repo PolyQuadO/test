@@ -137,6 +137,7 @@ class _SignUpPageState extends State<SignUpPage>{
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _errorMessage = '';
 
+
   void signUp() async {
     try{
       UserCredential userCredential = await FirebaseAuth.instance.
