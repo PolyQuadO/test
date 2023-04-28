@@ -1,32 +1,24 @@
 import 'dart:async';
 
-import 'package:firebase_database/firebase_database.dart';
+// import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:table_calendar/table_calendar.dart'; // TABLECALENDAR 추가
-// import 'package:firebase_database/firebase_database.dart';
 import 'firebase_options.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:test0415/LoginForm/Login.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//
-//   runApp(AuthAndDatabaseExample());
-// }
+<<<<<<<<< Temporary merge branch 1
+=========
+
+>>>>>>>>> Temporary merge branch 2
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // 날짜와 시간의 형식을 초기화
   await initializeDateFormatting();
-
   // Firebase 초기화
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -138,6 +130,7 @@ class _SignUpPageState extends State<SignUpPage>{
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String _errorMessage = '';
 
+
   void signUp() async {
     try{
       UserCredential userCredential = await FirebaseAuth.instance.
@@ -216,8 +209,8 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
 
-  final DatabaseReference _databaseReference =
-  FirebaseDatabase.instance.reference().child('todos');
+  // final DatabaseReference _databaseReference =
+  // FirebaseDatabase.instance.reference().child('todos');
   final TextEditingController _textEditingController = TextEditingController();
   List<String> _todos = [];
   String _newTodo = '';
@@ -239,15 +232,15 @@ _selectedDay = day;
 
   DateTime focusedDay = DateTime.now();
 
-  void _fetchTodos() {
-    _databaseReference.onValue.listen((event) {
-      Map<dynamic, dynamic>? snapshotValue = event.snapshot.value as Map?;
-      if (snapshotValue == null) return;
-      setState(() {
-        _todos = snapshotValue.values.toList().cast<String>();
-      });
-    });
-  }
+  // void _fetchTodos() {
+  //   _databaseReference.onValue.listen((event) {
+  //     Map<dynamic, dynamic>? snapshotValue = event.snapshot.value as Map?;
+  //     if (snapshotValue == null) return;
+  //     setState(() {
+  //       _todos = snapshotValue.values.toList().cast<String>();
+  //     });
+  //   });
+  // }
   void _addTodo() async {
     String message = _textEditingController.text;
     String years = '${selectedDay.year}';
@@ -299,13 +292,13 @@ _selectedDay = day;
   }
 
   void _deleteTodo(String todo) {
-    _databaseReference.child(todo).remove();
+    // _databaseReference.child(todo).remove();
   }
-  @override
-  void initState() {
-    super.initState();
-    _fetchTodos();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _fetchTodos();
+  // }
 
 
 
