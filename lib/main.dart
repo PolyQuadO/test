@@ -25,7 +25,6 @@ void main() async {
   // 앱 실행
   runApp(AuthAndDatabaseExample());
 }
-
 class AuthAndDatabaseExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
