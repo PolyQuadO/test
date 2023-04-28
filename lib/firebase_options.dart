@@ -44,43 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBmdc3cYzkdbLD_uEI-XnQbtFn_AZhkKY4',
-    appId: '1:409763267925:web:3d39920e8bff5a225a1bdc',
-    messagingSenderId: '409763267925',
-    projectId: 'safdsaf-d85f6',
-    authDomain: 'safdsaf-d85f6.firebaseapp.com',
-    databaseURL: 'https://safdsaf-d85f6-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'safdsaf-d85f6.appspot.com',
+    apiKey: 'AIzaSyCXItq7z1oqzsTM9IsTP3JP4xGCtqKXnnM',
+    appId: '1:703927130700:web:38b4cb520f3156fb6c32e9',
+    messagingSenderId: '703927130700',
+    projectId: 'quado-jjkl',
+    authDomain: 'quado-jjkl.firebaseapp.com',
+    storageBucket: 'quado-jjkl.appspot.com',
+    measurementId: 'G-FXX08P55TV',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDAlHgLuMeYErjqagxsMkgi1_sdg3v_6E8',
-    appId: '1:409763267925:android:622fe6a0367ef2355a1bdc',
-    messagingSenderId: '409763267925',
-    projectId: 'safdsaf-d85f6',
-    databaseURL: 'https://safdsaf-d85f6-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'safdsaf-d85f6.appspot.com',
+    apiKey: 'AIzaSyCwurV1uQr3cifPtv9WYRYEql-Dl1uBsF0',
+    appId: '1:703927130700:android:c53d4b9bb1987a196c32e9',
+    messagingSenderId: '703927130700',
+    projectId: 'quado-jjkl',
+    storageBucket: 'quado-jjkl.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCuiVpUbCZlL9ifgxE6SLin8-z7-hqGNpQ',
-    appId: '1:409763267925:ios:fb1a9ac83529af6e5a1bdc',
-    messagingSenderId: '409763267925',
-    projectId: 'safdsaf-d85f6',
-    databaseURL: 'https://safdsaf-d85f6-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'safdsaf-d85f6.appspot.com',
-    iosClientId: '409763267925-59m555m3cmeqe4l538ocr5aaps7404oo.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBlnSazIJuBuWfE_5xLFbiNwlsRIcLPigw',
+    appId: '1:703927130700:ios:7eca9c34a126f2d86c32e9',
+    messagingSenderId: '703927130700',
+    projectId: 'quado-jjkl',
+    storageBucket: 'quado-jjkl.appspot.com',
+    iosClientId: '703927130700-i60ems4safi4e4hs998k266s9hhv45le.apps.googleusercontent.com',
     iosBundleId: 'com.example.test0415',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCuiVpUbCZlL9ifgxE6SLin8-z7-hqGNpQ',
-    appId: '1:409763267925:ios:fb1a9ac83529af6e5a1bdc',
-    messagingSenderId: '409763267925',
-    projectId: 'safdsaf-d85f6',
-    databaseURL: 'https://safdsaf-d85f6-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'safdsaf-d85f6.appspot.com',
-    iosClientId: '409763267925-59m555m3cmeqe4l538ocr5aaps7404oo.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBlnSazIJuBuWfE_5xLFbiNwlsRIcLPigw',
+    appId: '1:703927130700:ios:7eca9c34a126f2d86c32e9',
+    messagingSenderId: '703927130700',
+    projectId: 'quado-jjkl',
+    storageBucket: 'quado-jjkl.appspot.com',
+    iosClientId: '703927130700-i60ems4safi4e4hs998k266s9hhv45le.apps.googleusercontent.com',
     iosBundleId: 'com.example.test0415',
   );
 }

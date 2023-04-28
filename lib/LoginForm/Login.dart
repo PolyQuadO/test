@@ -571,6 +571,7 @@ class _SignInTenState extends State<LoginForm> {
                 fontWeight: FontWeight.w500,
               ),
               recognizer: TapGestureRecognizer()
+                ..onTap = _goSignUpPage
             ),
           ],
         ),
