@@ -10,16 +10,7 @@ import 'firebase_options.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:test0415/LoginForm/Login.dart';
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//
-//   runApp(AuthAndDatabaseExample());
-// }
+//용재가 수정함
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
