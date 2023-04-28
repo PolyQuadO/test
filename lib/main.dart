@@ -200,12 +200,8 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
 
-
   // final DatabaseReference _databaseReference =
-  // FirebaseDatabase.instance.reference().child('todos');
-
-  final DatabaseReference _databaseReference =
-      FirebaseDatabase.instance.reference().child('todos');
+  //     FirebaseDatabase.instance.reference().child('todos');
 
   final TextEditingController _textEditingController = TextEditingController();
   List<String> _todos = [];
@@ -238,17 +234,6 @@ _selectedDay = day;
   //     });
   //   });
   // }
-
-  void _fetchTodos() {
-    _databaseReference.onValue.listen((event) {
-      Map<dynamic, dynamic>? snapshotValue = event.snapshot.value as Map?;
-      if (snapshotValue == null) return;
-      setState(() {
-        _todos = snapshotValue.values.toList().cast<String>();
-      });
-    });
-  }
-
 
   void _addTodo() async {
     String message = _textEditingController.text;
@@ -301,18 +286,9 @@ _selectedDay = day;
   }
 
   void _deleteTodo(String todo) {
-
     // _databaseReference.child(todo).remove();
-
-    _databaseReference.child(todo).remove();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchTodos();
-
-  }
   // @override
   // void initState() {
   //   super.initState();
