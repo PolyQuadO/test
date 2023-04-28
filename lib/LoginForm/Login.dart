@@ -226,6 +226,8 @@ class _SignInTenState extends State<LoginForm> {
     return SizedBox(
       height: size.height / 12,
       child: TextField(
+        textInputAction: TextInputAction.go,
+        onSubmitted: (_) async => await _login(), //enter 키 입력 시 _login 함수 실행.
         controller: _emailController,
         style: GoogleFonts.inter(
           fontSize: 18.0,
@@ -285,9 +287,12 @@ class _SignInTenState extends State<LoginForm> {
   }
 
   Widget passwordTextField(Size size) {
+
     return SizedBox(
       height: size.height / 12,
       child: TextField(
+        textInputAction: TextInputAction.go,
+        onSubmitted: (_) async => await _login(), //enter 키 입력 시 _login 함수 실행.
         controller: _passwordController,
         style: GoogleFonts.inter(
           fontSize: 18.0,
