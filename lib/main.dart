@@ -11,6 +11,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:test0415/LoginForm/Login.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // 날짜와 시간의 형식을 초기화
@@ -64,8 +65,8 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
-  
-  Future<void> _goSignUpPage() async{
+
+  Future<void> _goSignUpPage() async {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SignUpPage()),
@@ -115,12 +116,12 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 //회원가입
-class SignUpPage extends StatefulWidget{
+class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage>{
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -128,72 +129,66 @@ class _SignUpPageState extends State<SignUpPage>{
 
 
   void signUp() async {
-    try{
-      UserCredential userCredential = await FirebaseAuth.instance.
-      createUserWithEmailAndPassword(
-          email: _emailController.text, password: _passwordController.text
-      )
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailController.text, password: _passwordController.text)
           .then((value) {
-            if (value.user!.email == null){
-
-            }else{
-              Navigator.pop(context);
-            }
-            return value;
+        if (value.user!.email == null) {
+        } else {
+          Navigator.pop(context);
+        }
+        return value;
       });
       FirebaseAuth.instance.currentUser?.sendEmailVerification();
-    }
-    on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       setState(() {
-        if (e.code == 'weak-password'){
+        if (e.code == 'weak-password') {
           _errorMessage = 'the password provided is too weak';
-        }else if(e.code == 'email-already-in-use'){
+        } else if (e.code == 'email-already-in-use') {
           _errorMessage = 'The account already exists for that email.';
-        }
-        else{
+        } else {
           _errorMessage = 'error';
         }
       });
-    }
-    catch (e){
+    } catch (e) {
       print('끝');
     }
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("회원가입")),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _errorMessage,
-              style: TextStyle(color: Colors.red),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            _errorMessage,
+            style: TextStyle(color: Colors.red),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email'),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(labelText: 'Password'),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: signUp,
-              child: Text('sign up'),
-            ),
-          ],
-        )
-      ),
+          ),
+          ElevatedButton(
+            onPressed: signUp,
+            child: Text('sign up'),
+          ),
+        ],
+      )),
     );
   }
 }
@@ -205,8 +200,13 @@ class TodoListPage extends StatefulWidget {
 
 class _TodoListPageState extends State<TodoListPage> {
 
+
   // final DatabaseReference _databaseReference =
   // FirebaseDatabase.instance.reference().child('todos');
+
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.reference().child('todos');
+
   final TextEditingController _textEditingController = TextEditingController();
   List<String> _todos = [];
   String _newTodo = '';
@@ -228,6 +228,7 @@ _selectedDay = day;
 
   DateTime focusedDay = DateTime.now();
 
+
   // void _fetchTodos() {
   //   _databaseReference.onValue.listen((event) {
   //     Map<dynamic, dynamic>? snapshotValue = event.snapshot.value as Map?;
@@ -237,13 +238,24 @@ _selectedDay = day;
   //     });
   //   });
   // }
+
+  void _fetchTodos() {
+    _databaseReference.onValue.listen((event) {
+      Map<dynamic, dynamic>? snapshotValue = event.snapshot.value as Map?;
+      if (snapshotValue == null) return;
+      setState(() {
+        _todos = snapshotValue.values.toList().cast<String>();
+      });
+    });
+  }
+
+
   void _addTodo() async {
     String message = _textEditingController.text;
     String years = '${selectedDay.year}';
     String yearAndmonth = '${selectedDay.year}_${selectedDay.month}';
     String months = '${selectedDay.month}';
     String days = '${selectedDay.day}';
-
 
     if (message.isNotEmpty) {
       String? userEmail = FirebaseAuth.instance.currentUser?.email;
@@ -261,12 +273,13 @@ _selectedDay = day;
 // 새로운 게시물을 추가할 때 사용할 문서 이름 생성
         int count = snapshot.docs.length;
         print('Collection Length: $count');
-        String daysTitle = 'todo${selectedDay.day}_${count + 1}'; // 여기서 특징을 추가해줘야할듯.
+        String daysTitle =
+            'todo${selectedDay.day}_${count + 1}'; // 여기서 특징을 추가해줘야할듯.
 // 사용자의 할 일 데이터 추가
         Map<String, dynamic> todoData = {
           'todo': message,
           'timestamp': selectedDay, // 현재 시간 추가
-          'isComplete' : false,
+          'isComplete': false,
         };
 
         await FirebaseFirestore.instance
@@ -288,15 +301,23 @@ _selectedDay = day;
   }
 
   void _deleteTodo(String todo) {
+
     // _databaseReference.child(todo).remove();
+
+    _databaseReference.child(todo).remove();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchTodos();
+
   }
   // @override
   // void initState() {
   //   super.initState();
   //   _fetchTodos();
   // }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -323,15 +344,13 @@ _selectedDay = day;
               ),
             ),
           ),
-          Expanded(
-              child: TodoListWidget(selectedDay: selectedDay)
-          )
+          Expanded(child: TodoListWidget(selectedDay: selectedDay))
         ],
       ),
     );
   }
 
-  Widget _Calender(){
+  Widget _Calender() {
     return TableCalendar(
       locale: 'ko_KR',
       calendarFormat: _calendarFormat,
@@ -352,10 +371,9 @@ _selectedDay = day;
       },
     );
   }
-
 }
-class TodoListWidget extends StatelessWidget {
 
+class TodoListWidget extends StatelessWidget {
   String? userEmail = FirebaseAuth.instance.currentUser?.email;
 
   final DateTime selectedDay;
@@ -371,15 +389,15 @@ class TodoListWidget extends StatelessWidget {
 
 // TodoListWidget({Key? key,required this.year, required this.month ,required this.day}) : super(key:key);
 
-
   void _deleteTodo(DocumentReference docRef) async {
     await docRef.delete();
   }
 
-  Future<void> _showEditTodoDialog(BuildContext context, Todo todo, DocumentReference docRef) async {
+  Future<void> _showEditTodoDialog(
+      BuildContext context, Todo todo, DocumentReference docRef) async {
     String updatedTodo = todo.todo; // Initialize with current todo text
-    TextEditingController _textEditingController =
-    TextEditingController(text: updatedTodo); // TextEditingController to handle editing
+    TextEditingController _textEditingController = TextEditingController(
+        text: updatedTodo); // TextEditingController to handle editing
 
     await showDialog(
       context: context,
@@ -412,6 +430,7 @@ class TodoListWidget extends StatelessWidget {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     if (userEmail == null) {
@@ -420,19 +439,17 @@ class TodoListWidget extends StatelessWidget {
     }
     return StreamBuilder<QuerySnapshot>(
 // Firebase 데이터의 변경을 실시간으로 감지하는 StreamBuilder
-      stream:
-      FirebaseFirestore.
-      instance.collection('users')
+      stream: FirebaseFirestore.instance
+          .collection('users')
           .doc(userEmail)
           .collection('userTodos')
           .doc(yearAndmonth)
-          .collection(days).
-      orderBy('timestamp', descending: true).
-      snapshots(),
+          .collection(days)
+          .orderBy('timestamp', descending: true)
+          .snapshots(),
 // FirebaseFirestore.instance.collection('users').doc(userEmail!).collection('userTodos').snapshots(),
 // 'userName' 필드에 유저 이름 추가
       builder: (context, snapshot) {
-
         if (snapshot.hasError) {
 // 에러가 발생한 경우 에러 메시지를 표시
           return Text('Error: ${snapshot.error}');
@@ -452,7 +469,8 @@ class TodoListWidget extends StatelessWidget {
 // Firestore 문서를 Todo 객체로 변환
             var todoDoc = snapshot.data!.docs[index];
             var todo = Todo.fromMap(todoDoc.data() as Map<String, dynamic>);
-            DocumentReference docRef = todoDoc.reference; // DocumentReference for current todo item
+            DocumentReference docRef =
+                todoDoc.reference; // DocumentReference for current todo item
 
             return ListTile(
               title: Text(todo.todo),
