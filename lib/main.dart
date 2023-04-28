@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:table_calendar/table_calendar.dart'; // TABLECALENDAR 추가
+import 'package:table_calendar/table_calendar.dart'; //
 import 'firebase_options.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:test0415/LoginForm/Login.dart';
 
-// JC 테스트
+// 태일 - 로컬
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // 날짜와 시간의 형식을 초기화
