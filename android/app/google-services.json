@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "409763267925",
+    "firebase_url": "https://safdsaf-d85f6-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "safdsaf-d85f6",
+    "storage_bucket": "safdsaf-d85f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409763267925:android:622fe6a0367ef2355a1bdc",
+        "android_client_info": {
+          "package_name": "com.example.test0415"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409763267925-oqana1pec61vp439mgbd4r5robvvcbdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAlHgLuMeYErjqagxsMkgi1_sdg3v_6E8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409763267925-oqana1pec61vp439mgbd4r5robvvcbdt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "409763267925-59m555m3cmeqe4l538ocr5aaps7404oo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.test0415"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
