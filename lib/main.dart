@@ -11,13 +11,10 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:test0415/LoginForm/Login.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // 날짜와 시간의 형식을 초기화
   await initializeDateFormatting();
-
   // Firebase 초기화
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
